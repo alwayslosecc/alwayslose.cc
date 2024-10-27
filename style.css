@@ -1,109 +1,45 @@
-/* Reset and basic styling */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
-}
-
 body {
+    font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background-color: #1a1a2e;
-    color: #eaeaea;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f3f4f6;
 }
 
-/* Main container */
 .container {
     text-align: center;
-    width: 350px;
-    padding: 30px;
-    background-color: #222436;
-    border-radius: 12px;
-    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.3);
-    transform: translateY(-20px);
-    opacity: 0;
-    animation: fadeIn 0.8s ease-out forwards;
-}
-
-@keyframes fadeIn {
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-h1 {
-    font-size: 1.8em;
-    color: #ff6b6b;
-    margin-bottom: 10px;
-}
-
-.subtitle {
-    font-size: 1.1em;
-    color: #a0a0a5;
-    margin-bottom: 25px;
-}
-
-/* License box */
-.license-box {
-    margin-bottom: 25px;
-}
-
-textarea {
-    width: 100%;
-    height: 50px;
-    padding: 10px;
-    font-size: 1.1em;
-    text-align: center;
-    border: none;
+    width: 300px;
+    padding: 20px;
+    background-color: #fff;
     border-radius: 8px;
-    background-color: #33354a;
-    color: #eaeaea;
-    resize: none;
-    outline: none;
-    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-textarea:focus {
-    background-color: #44475a;
-    box-shadow: inset 0 4px 12px rgba(0, 0, 0, 0.3);
-}
-
-/* Button styling with animation */
 button {
-    padding: 12px 25px;
-    font-size: 1.1em;
-    color: #ffffff;
-    background-color: #ff6b6b;
-    border: none;
-    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 16px;
     cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
 }
 
-button:hover {
-    transform: scale(1.05);
-    box-shadow: 0px 6px 15px rgba(255, 107, 107, 0.5);
+#keyDisplay {
+    margin: 20px 0;
+    font-size: 20px;
+    color: #333;
 }
 
-button:active {
-    transform: scale(0.95);
+#keysList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 }
 
-/* Animation for focus effect on license box */
-.license-box textarea {
-    animation: pulse 1.5s infinite;
-}
-
-@keyframes pulse {
-    0%, 100% {
-        box-shadow: inset 0 0 10px rgba(255, 107, 107, 0.2);
-    }
-    50% {
-        box-shadow: inset 0 0 15px rgba(255, 107, 107, 0.6);
-    }
+#keysList li {
+    padding: 5px 0;
+    color: #555;
 }
