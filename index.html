@@ -1,35 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>licenseKey - AlwaysLose.cc</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="container">
-        <h1>AlwaysLose.cc</h1>
-        <p class="subtitle">License Key Generator</p>
-        
-        <div class="license-box">
-            <textarea id="licenseKey" readonly placeholder="XXXX-XXXX-XXXX-XXXX"></textarea>
-        </div>
-        
-        <button onclick="generateLicenseKey()">Generate Key</button>
-    </div>
-
-    <script>
-        function generateLicenseKey() {
-            const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            let licenseKey = "";
-            for (let i = 0; i < 16; i++) {
-                if (i > 0 && i % 4 === 0) {
-                    licenseKey += "-";
-                }
-                licenseKey += chars.charAt(Math.floor(Math.random() * chars.length));
-            }
-            document.getElementById("licenseKey").value = licenseKey;
+<script>
+    // Request a new license key from the server
+    async function generateLicenseKey() {
+        try {
+            const response = await fetch('http://localhost:3000/generate', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' }
+            });
+            const data = await response.json();
+            document.getElementById("licenseKey").value = data.key;
+        } catch (error) {
+            alert("Failed to generate license key. Please try again.");
         }
-    </script>
-</body>
-</html>
+    }
+
+    // Mark the displayed key as used on the server
+    async function useLicenseKey() {
+        const key = document.getElementById("licenseKey").value;
+        if (!key) return alert("No license key to use");
+
+        try {
+            const response = await fetch('http://localhost:3000/use-key', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ key })
+            });
+            const data = await response.json();
+            if (data.message) alert(data.message);
+            else alert(data.error);
+        } catch (error) {
+            alert("Failed to mark key as used. Please try again.");
+        }
+    }
+</script>
