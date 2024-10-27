@@ -1,34 +1,19 @@
-<script>
-    // Request a new license key from the server
-    async function generateLicenseKey() {
-        try {
-            const response = await fetch('http://localhost:3000/generate', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' }
-            });
-            const data = await response.json();
-            document.getElementById("licenseKey").value = data.key;
-        } catch (error) {
-            alert("Failed to generate license key. Please try again.");
-        }
-    }
-
-    // Mark the displayed key as used on the server
-    async function useLicenseKey() {
-        const key = document.getElementById("licenseKey").value;
-        if (!key) return alert("No license key to use");
-
-        try {
-            const response = await fetch('http://localhost:3000/use-key', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ key })
-            });
-            const data = await response.json();
-            if (data.message) alert(data.message);
-            else alert(data.error);
-        } catch (error) {
-            alert("Failed to mark key as used. Please try again.");
-        }
-    }
-</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>License Key Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>License Key Generator</h1>
+        <button id="generateKeyBtn">Generate License Key</button>
+        <div id="keyDisplay"></div>
+        <h2>All Generated Keys</h2>
+        <ul id="keysList"></ul>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
