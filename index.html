@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>licenseKey - AlwaysLose.cc</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>AlwaysLose.cc</h1>
+        <p class="subtitle">License Key Generator</p>
+        
+        <div class="license-box">
+            <textarea id="licenseKey" readonly placeholder="XXXX-XXXX-XXXX-XXXX"></textarea>
+        </div>
+        
+        <button onclick="generateLicenseKey()">Generate Key</button>
+    </div>
+
+    <script>
+        function generateLicenseKey() {
+            const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            let licenseKey = "";
+            for (let i = 0; i < 16; i++) {
+                if (i > 0 && i % 4 === 0) {
+                    licenseKey += "-";
+                }
+                licenseKey += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            document.getElementById("licenseKey").value = licenseKey;
+        }
+    </script>
+</body>
+</html>
